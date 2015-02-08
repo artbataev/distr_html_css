@@ -1,0 +1,24 @@
+// Примесь-генератор
+.sprite-r(@sprite1x) {
+
+  .sprite-image(@sprite1x);
+  .sprite-width(@sprite1x);
+  .sprite-height(@sprite1x);
+  .sprite-position(@sprite1x);
+
+  @width: extract(@sprite1x, 7);
+  @height: extract(@sprite1x, 6);
+  background-size: @width @height;
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+    @sprite-image: extract(@sprite1x, 9);
+    @sprite-image-bare: replace(~`"@{sprite-image}".slice(1, -1)`, "-1x\.", "-2x.");
+    background-image: url(@sprite-image-bare);
+  }
+}
+
+
+
+// .icon-1 {
+//   .sprite-r(@twitter); // @twitter — переменная (имя файла картинки, на само деле)
+// }

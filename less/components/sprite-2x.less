@@ -1,0 +1,103 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path name;
+
+At the bottom of this section, we provide information about the spritesheet itself
+@spritesheet: width height image @spritesheet-sprites;
+*/
+@github-2x-name: github-2x;
+@github-2x-x: 0px;
+@github-2x-y: 0px;
+@github-2x-offset-x: 0px;
+@github-2x-offset-y: 0px;
+@github-2x-width: 64px;
+@github-2x-height: 64px;
+@github-2x-total-width: 128px;
+@github-2x-total-height: 128px;
+@github-2x-image: '../../img/sprite-2x.png';
+@github-2x: 0px 0px 0px 0px 64px 64px 128px 128px '../../img/sprite-2x.png' github-2x;
+@twitter-2x-name: twitter-2x;
+@twitter-2x-x: 64px;
+@twitter-2x-y: 0px;
+@twitter-2x-offset-x: -64px;
+@twitter-2x-offset-y: 0px;
+@twitter-2x-width: 64px;
+@twitter-2x-height: 64px;
+@twitter-2x-total-width: 128px;
+@twitter-2x-total-height: 128px;
+@twitter-2x-image: '../../img/sprite-2x.png';
+@twitter-2x: 64px 0px -64px 0px 64px 64px 128px 128px '../../img/sprite-2x.png' twitter-2x;
+@twitter2-2x-name: twitter2-2x;
+@twitter2-2x-x: 0px;
+@twitter2-2x-y: 64px;
+@twitter2-2x-offset-x: 0px;
+@twitter2-2x-offset-y: -64px;
+@twitter2-2x-width: 64px;
+@twitter2-2x-height: 64px;
+@twitter2-2x-total-width: 128px;
+@twitter2-2x-total-height: 128px;
+@twitter2-2x-image: '../../img/sprite-2x.png';
+@twitter2-2x: 0px 64px 0px -64px 64px 64px 128px 128px '../../img/sprite-2x.png' twitter2-2x;
+@spritesheet-width: 128px;
+@spritesheet-height: 128px;
+@spritesheet-image: '../../img/sprite-2x.png';
+@spritesheet-sprites: @github-2x @twitter-2x @twitter2-2x;
+@spritesheet: 128px 128px '../../img/sprite-2x.png' @spritesheet-sprites;
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+*/
+.sprite-width(@sprite) {
+  width: extract(@sprite, 5);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 6);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 3);
+  @sprite-offset-y: extract(@sprite, 4);
+  background-position: @sprite-offset-x @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: extract(@sprite, 9);
+  @sprite-image-bare: ~`"@{sprite-image}".slice(1, -1)`;
+  background-image: url(@sprite-image-bare);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+/*
+The `.sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of LESS
+
+.sprites(@spritesheet-sprites);
+*/
+.sprites(@sprites, @i: 1) when (@i <= length(@sprites)) {
+  @sprite: extract(@sprites, @i);
+  @sprite-name: extract(@sprite, 10);
+  .@{sprite-name} {
+    .sprite(@sprite);
+  }
+  .sprites(@sprites, @i + 1);
+}
