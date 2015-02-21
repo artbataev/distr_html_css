@@ -138,7 +138,12 @@ module.exports = function(grunt) {
 
 
     clean: {
-      build: ['build/']
+      build: [
+        'build/css', 
+        'build/img', 
+        'build/js', 
+        'build/*.html', 
+      ]
     },
 
 
