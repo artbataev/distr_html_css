@@ -117,19 +117,19 @@ module.exports = function(grunt) {
     //     options: {
     //       patterns: [
     //         {
-    //           match: /<script src=\"js\/build\/plugins.js/g,
-    //           replacement: '<script src="js/build/plugins.min.js'
+    //           match: /<script src=\"js\/plugins.js/g,
+    //           replacement: '<script src="js/plugins.min.js'
     //         },
     //         {
-    //           match: /<script src=\"js\/build\/script.js/g,
-    //           replacement: '<script src="js/build/script.min.js'
+    //           match: /<script src=\"js\/script.js/g,
+    //           replacement: '<script src="js/script.min.js'
     //         }
     //       ]
     //     },
     //     files: [
     //       {
     //         expand: true,
-    //         src: ['<%= config.dist %>/*.html']
+    //         src: ['src/*.html']
     //       }
     //     ]
     //   }
@@ -160,6 +160,17 @@ module.exports = function(grunt) {
 
 
 
+    includereplace: {
+      html: {
+        src: '*.html', 
+        dest: 'build/', 
+        expand: true, 
+        cwd: 'src/'
+      }
+    },
+
+
+
     watch: {
       style: {
         files: ['src/less/*.less'],
@@ -185,10 +196,14 @@ module.exports = function(grunt) {
           livereload: true
         },
       },
-      livereload: {
-        options: { livereload: true },
-        files: ['build/*.html','build/css/*.css','build/js/*.js']
-      }
+      html: {
+        files: ['src/*.html'],
+        tasks: ['includereplace:html'],
+        options: {
+          spawn: false,
+          livereload: true
+        },
+      },
     }
 
   });
@@ -206,6 +221,7 @@ module.exports = function(grunt) {
     'copy:img',
     'sprite',
     'imagemin',
+    'includereplace:html',
     'watch'
   ]);
 
@@ -223,6 +239,7 @@ module.exports = function(grunt) {
     'copy:img',
     'sprite',
     'imagemin',
+    'includereplace:html',
   ]);
 
 

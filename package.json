@@ -14,6 +14,7 @@
     "grunt-contrib-less": "^0.12",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-include-replace": "^3.0.0",
     "grunt-replace": "^0.8.0",
     "grunt-spritesmith": "^3.5.0",
     "load-grunt-tasks": "^3.0.0"
