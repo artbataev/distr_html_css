@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     less: {
       style: {
         files: {
-          'css/style.css': ['less/style.less']
+          'build/css/style.css': ['src/less/style.less']
         }
       }
     },
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         browsers: ['last 2 versions', 'ie 9']
       },
       style: {
-        src: 'css/style.css'
+        src: 'build/css/style.css'
       }
     },
 
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     cmq: {
       style: {
         files: {
-          'css/style.css': ['css/style.css']
+          'build/css/style.css': ['build/css/style.css']
         }
       }
     },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
           keepSpecialComments: 0
         },
         files: {
-          'css/style.min.css': ['css/style.css']
+          'build/css/style.min.css': ['build/css/style.css']
         }
       }
     },
@@ -57,10 +57,10 @@ module.exports = function(grunt) {
     concat: {
       start: {
         src: [
-          'js/vendors/modernizr-2.8.3.min.js',
-          'js/script.js'
+          // 'src/js/plugin.js',
+          'src/js/script.js'
         ],
-        dest: 'js/script.min.js'
+        dest: 'build/js/script.min.js'
       }
     },
 
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
     uglify: {
       start: {
         files: {
-          'js/script.min.js': ['js/script.min.js']
+          'build/js/script.min.js': ['build/js/script.min.js']
         }
       }
     },
@@ -78,30 +78,34 @@ module.exports = function(grunt) {
 
     sprite:{
       sprite_large: {
-        src: 'img/sprite-2x/*.png',
-        dest: 'img/sprite-2x.png',
-        destCss: 'less/components/sprite-2x.less',
+        src: 'src/img/sprite-2x/*.png',
+        dest: 'build/img/sprite-2x.png',
+        padding: 8,
+        imgPath: '../img/sprite-2x.png',
+        destCss: 'src/less/components/sprite-2x.less', 
         'cssVarMap': function (sprite) {
           sprite.name = sprite.name + '-2x';
         },
       },
       sprite: {
-        src: 'img/sprite/*.png',
-        dest: 'img/sprite-1x.png',
-        destCss: 'less/components/sprite-1x.less',
+        src: 'src/img/sprite/*.png',
+        dest: 'build/img/sprite-1x.png',
+        padding: 4,
+        imgPath: '../img/sprite-1x.png',
+        destCss: 'src/less/components/sprite-1x.less',
       }
     },
 
 
 
-    imagemin: { 
+    imagemin: {
       build: {
         options: {
           optimizationLevel: 3
         },
         files: [{
           expand: true,
-          src: ['img/*.{png,jpg,gif,svg}']
+          src: ['build/img/*.{png,jpg,gif,svg}']
         }]
       }
     },
@@ -133,50 +137,49 @@ module.exports = function(grunt) {
 
 
 
-    // copy: {
-    //   stuff: {
-    //     expand: true,
-    //     cwd: '<%= config.src %>',
-    //     // src: ['**','!less/*'],
-    //     src: [
-    //       '**',
-    //       '!**/less/**', // no less
-    //       '!**/_*/**', // ignore '_name' folders
-    //       '!**/js/**', // ignore all js
-    //       'js/build/*'
-    //       ],
-    //     dest: '<%= config.dist %>'
-    //   },
-    //   gdrive: {
-    //     expand: true,
-    //     cwd: '<%= config.dist %>',
-    //     src: ['**'],
-    //     dest: '<%= config.gdrive %>'
-    //   }
-    // },
+    clean: {
+      build: ['build/']
+    },
+
+
+
+    copy: {
+      js_vendors: {
+        expand: true,
+        cwd: 'src/js/vendors/',
+        src: ['**'],
+        dest: 'build/js/',
+      },
+      img: {
+        expand: true,
+        cwd: 'src/img/',
+        src: ['*.{png,jpg,gif,svg}'],
+        dest: 'build/img/',
+      },
+    },
 
 
 
     watch: {
       style: {
-        files: ['less/*.less'],
-        tasks: ['less', 'autoprefixer', 'cmq', 'cssmin'],
+        files: ['src/less/*.less'],
+        tasks: ['style'],
         options: {
           spawn: false,
           livereload: true
         },
       },
       scripts: {
-        files: ['js/script.js'],
-        tasks: ['concat', 'uglify'],
+        files: ['src/js/script.js'],
+        tasks: ['js'],
         options: {
           spawn: false,
           livereload: true
         },
       },
       images: {
-        files: ['img/**/*.{png,jpg,gif,svg}'],
-        tasks: ['sprite', 'imagemin', 'less', 'autoprefixer', 'cmq', 'cssmin'],
+        files: ['src/img/**/*.{png,jpg,gif,svg}'],
+        tasks: ['img'],
         options: {
           spawn: false,
           livereload: true
@@ -184,7 +187,7 @@ module.exports = function(grunt) {
       },
       livereload: {
         options: { livereload: true },
-        files: ['*.html','css/*.css','js/*.js']
+        files: ['build/*.html','build/css/*.css','build/js/*.js']
       }
     }
 
@@ -199,9 +202,56 @@ module.exports = function(grunt) {
     'cssmin',
     'concat',
     'uglify',
+    'copy:js_vendors',
+    'copy:img',
     'sprite',
     'imagemin',
     'watch'
+  ]);
+
+
+
+  grunt.registerTask('build', [
+    'clean:build',
+    'less',
+    'autoprefixer',
+    'cmq',
+    'cssmin',
+    'concat',
+    'uglify',
+    'copy:js_vendors',
+    'copy:img',
+    'sprite',
+    'imagemin',
+  ]);
+
+
+
+  grunt.registerTask('js', [
+    'concat',
+    'uglify',
+    'copy:js_vendors',
+  ]);
+
+
+
+  grunt.registerTask('style', [
+    'less',
+    'autoprefixer',
+    'cmq',
+    'cssmin'
+  ]);
+
+
+
+  grunt.registerTask('img', [
+    'sprite',
+    'copy:img',
+    'imagemin',
+    'less',
+    'autoprefixer',
+    'cmq',
+    'cssmin'
   ]);
 
 };
