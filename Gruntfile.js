@@ -109,50 +109,50 @@ module.exports = function(grunt) {
 
 
     // replace: {
-    //   // dist: {
-    //   //   options: {
-    //   //     patterns: [
-    //   //       {
-    //   //         match: /<script src=\"js\/build\/plugins.js/g,
-    //   //         replacement: '<script src="js/build/plugins.min.js'
-    //   //       },
-    //   //       {
-    //   //         match: /<script src=\"js\/build\/script.js/g,
-    //   //         replacement: '<script src="js/build/script.min.js'
-    //   //       }
-    //   //     ]
-    //   //   },
-    //   //   files: [
-    //   //     {
-    //   //       expand: true,
-    //   //       src: ['<%= config.dist %>/*.html']
-    //   //     }
-    //   //   ]
-    //   // }
+    //   dist: {
+    //     options: {
+    //       patterns: [
+    //         {
+    //           match: /<script src=\"js\/build\/plugins.js/g,
+    //           replacement: '<script src="js/build/plugins.min.js'
+    //         },
+    //         {
+    //           match: /<script src=\"js\/build\/script.js/g,
+    //           replacement: '<script src="js/build/script.min.js'
+    //         }
+    //       ]
+    //     },
+    //     files: [
+    //       {
+    //         expand: true,
+    //         src: ['<%= config.dist %>/*.html']
+    //       }
+    //     ]
+    //   }
     // },
 
 
 
     // copy: {
-    //   // stuff: {
-    //   //   expand: true,
-    //   //   cwd: '<%= config.src %>',
-    //   //   // src: ['**','!less/*'],
-    //   //   src: [
-    //   //     '**',
-    //   //     '!**/less/**', // no less
-    //   //     '!**/_*/**', // ignore '_name' folders
-    //   //     '!**/js/**', // ignore all js
-    //   //     'js/build/*'
-    //   //     ],
-    //   //   dest: '<%= config.dist %>'
-    //   // },
-    //   // gdrive: {
-    //   //   expand: true,
-    //   //   cwd: '<%= config.dist %>',
-    //   //   src: ['**'],
-    //   //   dest: '<%= config.gdrive %>'
-    //   // }
+    //   stuff: {
+    //     expand: true,
+    //     cwd: '<%= config.src %>',
+    //     // src: ['**','!less/*'],
+    //     src: [
+    //       '**',
+    //       '!**/less/**', // no less
+    //       '!**/_*/**', // ignore '_name' folders
+    //       '!**/js/**', // ignore all js
+    //       'js/build/*'
+    //       ],
+    //     dest: '<%= config.dist %>'
+    //   },
+    //   gdrive: {
+    //     expand: true,
+    //     cwd: '<%= config.dist %>',
+    //     src: ['**'],
+    //     dest: '<%= config.gdrive %>'
+    //   }
     // },
 
 
