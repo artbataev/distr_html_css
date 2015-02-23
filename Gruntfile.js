@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 
 
   require('load-grunt-tasks')(grunt); // теперь все задачи — в package.json
+  require('time-grunt')(grunt);
 
 
 
