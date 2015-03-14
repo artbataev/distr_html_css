@@ -203,13 +203,40 @@ module.exports = function(grunt) {
         },
       },
       html: {
-        files: ['src/*.html'],
+        files: ['src/*.html', 'src/_html_inc/*.html'],
         tasks: ['includereplace:html'],
         options: {
           spawn: false,
           livereload: true
         },
       },
+    },
+
+
+
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src : [
+            'build/css/*.css',
+            'build/js/*.js',
+            'build/img/*.{png,jpg,gif,svg}',
+            'build/*.html',
+          ]
+        },
+        options: {
+          watchTask: true,
+          server: {
+            baseDir: "build/",
+          },
+          // startPath: "/index.html",
+          ghostMode: {
+            clicks: true,
+            forms: true,
+            scroll: false
+          }
+        }
+      }
     }
 
   });
@@ -228,6 +255,7 @@ module.exports = function(grunt) {
     'sprite',
     'imagemin',
     'includereplace:html',
+    'browserSync',
     'watch'
   ]);
 
