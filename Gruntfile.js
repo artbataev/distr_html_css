@@ -162,6 +162,12 @@ module.exports = function(grunt) {
         src: ['*.{png,jpg,gif,svg}'],
         dest: 'build/img/',
       },
+      // fonts: {
+      //   expand: true,
+      //   cwd: 'src/font/',
+      //   src: ['*.{eot,svg,woff,ttf}'],
+      //   dest: 'build/font/',
+      // },
     },
 
 
@@ -252,6 +258,7 @@ module.exports = function(grunt) {
     'uglify',
     'copy:js_vendors',
     'copy:img',
+    // 'copy:font',
     'sprite',
     'imagemin',
     'includereplace:html',
@@ -271,6 +278,7 @@ module.exports = function(grunt) {
     'uglify',
     'copy:js_vendors',
     'copy:img',
+    // 'copy:font',
     'sprite',
     'imagemin',
     'includereplace:html',
