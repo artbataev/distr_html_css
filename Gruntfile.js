@@ -13,9 +13,15 @@ module.exports = function(grunt) {
 
     less: {
       style: {
+        options: {
+          sourceMap: true,
+          sourceMapURL: 'style.css.map',
+          sourceMapFilename: "/build/css/style.css.map",
+          sourceMapBasepath: "../../"
+        },
         files: {
           'build/css/style.css': ['src/less/style.less']
-        }
+        },
       }
     },
 
@@ -258,7 +264,7 @@ module.exports = function(grunt) {
     'uglify',
     'copy:js_vendors',
     'copy:img',
-    // 'copy:font',
+    // 'copy:fonts',
     'sprite',
     'imagemin',
     'includereplace:html',
@@ -278,7 +284,7 @@ module.exports = function(grunt) {
     'uglify',
     'copy:js_vendors',
     'copy:img',
-    // 'copy:font',
+    // 'copy:fonts',
     'sprite',
     'imagemin',
     'includereplace:html',
