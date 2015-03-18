@@ -13,12 +13,16 @@ module.exports = function(grunt) {
 
     less: {
       style: {
-        options: {
-          sourceMap: true,
-          sourceMapURL: 'style.css.map',
-          sourceMapFilename: "/build/css/style.css.map",
-          sourceMapBasepath: "../../"
-        },
+        // Отключено, т.к. в паре с autoprefixer работает некорректно
+        // options: {
+        //   compress: false,
+        //   yuicompress: false,
+        //   optimization: 2,
+        //   sourceMap: true,
+        //   sourceMapFilename: "build/css/style.css.map",
+        //   sourceMapURL: 'style.css.map',
+        //   sourceMapRootpath: '../../',
+        // },
         files: {
           'build/css/style.css': ['src/less/style.less']
         },
@@ -29,7 +33,9 @@ module.exports = function(grunt) {
 
     autoprefixer: {
       options: {
-        browsers: ['last 2 versions', 'ie 9']
+        browsers: ['last 2 versions', 'ie 9'],
+        // Отключено, т.к. работает некорректно
+        // map: true,
       },
       style: {
         src: 'build/css/style.css'
@@ -118,7 +124,7 @@ module.exports = function(grunt) {
     },
 
 
-
+    // потребует в package.json:  "grunt-replace": "^0.8.0",
     // replace: {
     //   dist: {
     //     options: {
@@ -191,7 +197,7 @@ module.exports = function(grunt) {
 
     watch: {
       style: {
-        files: ['src/less/*.less'],
+        files: ['src/less/**/*.less'],
         tasks: ['style'],
         options: {
           spawn: false,
