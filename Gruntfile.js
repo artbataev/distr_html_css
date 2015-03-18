@@ -13,16 +13,15 @@ module.exports = function(grunt) {
 
     less: {
       style: {
-        // Отключено, т.к. в паре с autoprefixer работает некорректно
-        // options: {
-        //   compress: false,
-        //   yuicompress: false,
-        //   optimization: 2,
-        //   sourceMap: true,
-        //   sourceMapFilename: "build/css/style.css.map",
-        //   sourceMapURL: 'style.css.map',
-        //   sourceMapRootpath: '../../',
-        // },
+        options: {
+          compress: false,
+          yuicompress: false,
+          optimization: 2,
+          sourceMap: true,
+          sourceMapFilename: "build/css/style.css.map",
+          sourceMapURL: 'style.css.map',
+          sourceMapRootpath: '../../',
+        },
         files: {
           'build/css/style.css': ['src/less/style.less']
         },
@@ -34,8 +33,7 @@ module.exports = function(grunt) {
     autoprefixer: {
       options: {
         browsers: ['last 2 versions', 'ie 9'],
-        // Отключено, т.к. работает некорректно
-        // map: true,
+        map: true,
       },
       style: {
         src: 'build/css/style.css'
@@ -47,7 +45,7 @@ module.exports = function(grunt) {
     cmq: {
       style: {
         files: {
-          'build/css/style.css': ['build/css/style.css']
+          'build/css/style.min.css': ['build/css/style.min.css']
         }
       }
     },
@@ -60,7 +58,7 @@ module.exports = function(grunt) {
           keepSpecialComments: 0
         },
         files: {
-          'build/css/style.min.css': ['build/css/style.css']
+          'build/css/style.min.css': ['build/css/style.min.css']
         }
       }
     },
@@ -174,6 +172,10 @@ module.exports = function(grunt) {
         src: ['*.{png,jpg,gif,svg}'],
         dest: 'build/img/',
       },
+      css_min: {
+        src: ['build/css/style.css'],
+        dest: 'build/css/style.min.css',
+      }
       // fonts: {
       //   expand: true,
       //   cwd: 'src/font/',
@@ -262,38 +264,40 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('default', [
-    'less',
-    'autoprefixer',
-    'cmq',
-    'cssmin',
-    'concat',
-    'uglify',
-    'copy:js_vendors',
-    'copy:img',
-    // 'copy:fonts',
-    'sprite',
-    'imagemin',
-    'includereplace:html',
-    'browserSync',
-    'watch'
+    'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
+    'less',                   // компилируем стили в          build/css/style.css
+    'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
+    'copy:css_min',           // создаем                      build/css/style.min.css
+    'cmq',                    // объединяем медиа-правила в   build/css/style.min.css
+    'cssmin',                 // минифицируем                 build/css/style.min.css
+    'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
+    'uglify',                 // минифицируем                        build/js/script.min.js
+    'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
+    'copy:img',               // копируем всё из src/img/ в build/img/
+    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
+    'imagemin',               // минифицируем картинки в build/img/
+    'includereplace:html',    // собираем HTML-файлы в build/ 
+    'browserSync',            // запускаем плюшки автообновления
+    'watch'                   // запускаем слежение за изменениями файлов
   ]);
 
 
 
   grunt.registerTask('build', [
-    'clean:build',
-    'less',
-    'autoprefixer',
-    'cmq',
-    'cssmin',
-    'concat',
-    'uglify',
-    'copy:js_vendors',
-    'copy:img',
-    // 'copy:fonts',
-    'sprite',
-    'imagemin',
-    'includereplace:html',
+    'clean:build',            // удаляем build/
+    'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
+    'less',                   // компилируем стили в          build/css/style.css
+    'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
+    'copy:css_min',           // создаем                      build/css/style.min.css
+    'cmq',                    // объединяем медиа-правила в   build/css/style.min.css
+    'cssmin',                 // минифицируем                 build/css/style.min.css
+    'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
+    'uglify',                 // минифицируем                        build/js/script.min.js
+    'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
+    'copy:img',               // копируем всё из src/img/ в build/img/
+    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
+    'imagemin',               // минифицируем картинки в build/img/
+    'includereplace:html',    // собираем HTML-файлы в build/ 
   ]);
 
 
