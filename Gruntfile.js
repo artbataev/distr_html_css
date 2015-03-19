@@ -175,6 +175,12 @@ module.exports = function(grunt) {
       css_min: {
         src: ['build/css/style.css'],
         dest: 'build/css/style.min.css',
+      },
+      css_add: {
+        expand: true,
+        cwd: 'src/less/css/',
+        src: ['*.css'],
+        dest: 'build/css/',
       }
       // fonts: {
       //   expand: true,
@@ -265,6 +271,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
+    'copy:css_add',           // копируем дополнительные CSS-файлы из src/less/css/ в build/css/
     'less',                   // компилируем стили в          build/css/style.css
     'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
     'copy:css_min',           // создаем                      build/css/style.min.css
@@ -286,6 +293,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:build',            // удаляем build/
     'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
+     'copy:css_add',           // копируем дополнительные CSS-файлы из src/less/css/ в build/css/
     'less',                   // компилируем стили в          build/css/style.css
     'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
     'copy:css_min',           // создаем                      build/css/style.min.css
