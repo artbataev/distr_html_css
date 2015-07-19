@@ -1,4 +1,2 @@
-*.sublime*
-prepros.cfg
 node_modules
 .DS_Store
