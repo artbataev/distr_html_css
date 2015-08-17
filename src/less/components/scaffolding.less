@@ -1,0 +1,25 @@
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+body {
+  min-width: @sm-screen;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: @font-size-sm;
+  font-weight: normal;
+  line-height: @line-height-sm;
+  color: @main-text-color;
+  @media(min-width:@md-screen) {
+    font-size: @font-size-md;
+    line-height: @line-height-md;
+  }
+  @media(min-width:@lg-screen) {
+    font-size: @font-size-lg;
+    line-height: @line-height-lg;
+    color: @lg-main-text-color;
+  }
+}
+
+

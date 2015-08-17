@@ -422,4 +422,120 @@ td,
 th {
   padding: 0;
 }
+
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 21px;
+  color: #414042;
+}
+@media (min-width: 1700px) {
+  body {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+@media (min-width: 1992px) {
+  body {
+    font-size: 18px;
+    line-height: 28px;
+    color: #6d6e71;
+  }
+}
+.page-footer {
+  padding-bottom: 20px;
+}
+.page-footer__wrapper {
+  box-sizing: border-box;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 320px;
+  margin: 0 auto;
+}
+@media (min-width: 1700px) {
+  .page-footer__wrapper {
+    width: 620px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media (min-width: 1992px) {
+  .page-footer__wrapper {
+    width: 940px;
+  }
+}
+.page-header__nav-bar {
+  background: #d1d3d4;
+}
+.page-header__nav-bar-wrapper {
+  box-sizing: border-box;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 320px;
+  margin: 0 auto;
+}
+@media (min-width: 1700px) {
+  .page-header__nav-bar-wrapper {
+    width: 620px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media (min-width: 1992px) {
+  .page-header__nav-bar-wrapper {
+    width: 940px;
+  }
+}
+.main-info__wrapper {
+  box-sizing: border-box;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 320px;
+  margin: 0 auto;
+}
+@media (min-width: 1700px) {
+  .main-info__wrapper {
+    width: 620px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media (min-width: 1992px) {
+  .main-info__wrapper {
+    width: 940px;
+  }
+}
+.main-heading__wrapper {
+  box-sizing: border-box;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 320px;
+  margin: 0 auto;
+}
+@media (min-width: 1700px) {
+  .main-heading__wrapper {
+    width: 620px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media (min-width: 1992px) {
+  .main-heading__wrapper {
+    width: 940px;
+  }
+}
+.main-h1 {
+  font-size: 25px;
+}
 /*# sourceMappingURL=style.css.map */
