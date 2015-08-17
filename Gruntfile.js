@@ -1,15 +1,8 @@
 module.exports = function(grunt) {
-
-
-
-  require('load-grunt-tasks')(grunt); // теперь все задачи — в package.json
+  require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
 
-
-
   grunt.initConfig({
-
-
 
     less: {
       style: {
@@ -28,8 +21,6 @@ module.exports = function(grunt) {
       }
     },
 
-
-
     autoprefixer: {
       options: {
         browsers: ['last 2 versions', 'ie 9'],
@@ -40,8 +31,6 @@ module.exports = function(grunt) {
       }
     },
 
-
-
     cmq: {
       style: {
         files: {
@@ -49,8 +38,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
-
 
     cssmin: {
       style: {
@@ -63,8 +50,6 @@ module.exports = function(grunt) {
       }
     },
 
-
-
     concat: {
       start: {
         src: [
@@ -75,8 +60,6 @@ module.exports = function(grunt) {
       }
     },
 
-
-
     uglify: {
       start: {
         files: {
@@ -84,8 +67,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
-
 
     sprite:{
       sprite_large: {
@@ -106,8 +87,6 @@ module.exports = function(grunt) {
         destCss: 'src/less/components/sprite-1x.less',
       }
     },
-
-
 
     imagemin: {
       build: {
@@ -145,7 +124,6 @@ module.exports = function(grunt) {
     //     ]
     //   }
     // },
-
 
 
     clean: {
@@ -292,7 +270,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean:build',            // удаляем build/
-    'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
+    // 'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
      'copy:css_add',           // копируем дополнительные CSS-файлы из src/less/css/ в build/css/
     'less',                   // компилируем стили в          build/css/style.css
     'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
