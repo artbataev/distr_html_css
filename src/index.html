@@ -34,8 +34,23 @@
       </h1>
     </div>
   </div>
-  <div class="main-promo">
-    Здесь будет слайдер
+  <div class="main-slider">
+    <div class="main-slider__wrapper">
+      <div class="main-slider__item">
+          <picture>
+            <source media="(min-width: 700px)" srcset="img/main-slider-1-md.jpg 700w" sizes="100vw">
+            <!-- <source media="(min-width: 900px)" srcset="img/main-slider-1-md.jpg 800w" sizes="100vw"> -->
+            <img src="img/main-slider-1-sm.jpg" width="320" height="274">
+          </picture>
+      </div>
+    </div>
+    <div class="slider-pagination">
+      <div class="slider-pagination__wrapper">
+        <i class="slider-pagination__item  slider-pagination__item--active"></i>
+        <i class="slider-pagination__item"></i>
+        <i class="slider-pagination__item"></i>
+      </div>
+    </div>
   </div>
 
   <div class="main-info">
@@ -60,15 +75,15 @@
         </div>
         <ul class="footer-contacts">
           <li><a class="footer-contacts__item footer-contacts__item--phone" href="tel:+79163222233">+7 916 322 22 33</a></li>
-          <li><a class="footer-contacts__item footer-contacts__item--email" href="mailto:i@ctrl-n.pro">i@ctrl-n.pro</a></li>
+          <li><a class="footer-contacts__item footer-contacts__item--mail" href="mailto:i@ctrl-n.pro">i@ctrl-n.pro</a></li>
         </ul>
       </div>
       <div class="page-footer__social">
         <ul class="social-links">
-          <li><a class="social-links__item  social-links__item--youtube" href="#">
+          <li><a class="social-links__item  social-links__item--youtube" href="#" target="_blank">
             Мы в Youtube
           </a></li>
-          <li><a class="social-links__item  social-links__item--instagram" href="#">
+          <li><a class="social-links__item  social-links__item--instagram" href="#" target="_blank">
             Мы в Instagram
           </a></li>
         </ul>

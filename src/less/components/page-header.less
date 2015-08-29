@@ -1,8 +1,47 @@
 .page-header {
   &__nav-bar {
-    background: #d1d3d4;
+    background: #6d6e71;
   }
   &__nav-bar-wrapper {
     .block-wrapper();
+    position: relative;
+  }
+  &__logo-link {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    @media(min-width: @md-screen) {
+      font-size: 36px;
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+  }
+}
+
+.main-nav {
+  &__list {
+    display: none;
+  }
+  &__toggle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    right: 20px;
+    content: "";
+    width: 25px;
+    height: 17px;
+    background: linear-gradient(white 20%, transparent 20%, transparent 40%, white 40%, white 60%, transparent 60%, transparent 80%, white 80%);
+    @media(min-width: @md-screen) {
+      width: 50px;
+      height: 33px;
+      margin-top: -16px;
+    }
   }
 }
